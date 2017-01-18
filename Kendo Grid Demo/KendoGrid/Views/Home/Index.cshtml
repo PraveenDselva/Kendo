@@ -1,0 +1,92 @@
+﻿@section HeaderSection {
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+}
+<h2>Kendo Grid </h2>
+<div id="grid"></div>
+<script>
+    $(function() {
+        var dataSource = new kendo.data.DataSource({
+            transport: {
+                read: {
+                    url: "@Url.Action("Read", "Home")",
+                    contentType: "application/json",
+                    type: "POST"
+                },
+                update: {
+                    url: "@Url.Action("Update", "Home")",
+                    type: "POST"
+                },
+                parameterMap: function (options, operation) {
+                    var out = null;
+                    switch (operation) {
+                        case "create":
+                            out = '{ "param":' + options.somevalue + '}';
+                            break;
+                        case "read":
+                            out = '{ "id":' + options.somevalue + '}';
+                            break;
+                        case "update":
+                            out =  options;
+                            break;
+                        case "destroy":
+                            out = '{ "id":  ' + options.somevalue + '}';
+                            break;
+                    }
+                    console.log(options);
+                    return out;
+                }
+            },
+            schema: {
+                model: {
+                    id: "ProductId",
+                    fields: {
+                        ProductId: { editable: false, nullable: true },
+                        ProductName: { validation: { required: true } },
+                        UnitPrice: { type: "number", validation: { required: true, min: 1 } },
+                        Discontinued: { type: "boolean" },
+                        UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+                    }
+
+                }
+            }
+        });
+
+        function categoryDropDownEditor(container, options) {
+            $('<input required name="' + options.field + '"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    autoBind: true,
+                    dataTextField: "ProductCategoryName",
+                    dataValueField: "ProductCategoryId",
+                    dataSource: {
+                        transport: {
+                            read: {
+                                url: "@Url.Action("ReadCategories", "Home")",
+                            contentType: "application/json",
+                            type: "POST"
+                        }}
+                    }
+                });
+        };
+
+        $("#grid").kendoGrid({
+            height: 400,
+            columns: [
+               { field: "ProductCategory", title: 'Product Category', editor: categoryDropDownEditor, template: "#=ProductCategory.ProductCategoryName#" },
+                "ProductName",
+                { field: "UnitPrice", format: "{0:c}", width: "150px" },
+                { field: "UnitsInStock", width: "150px" },
+                { field: "Discontinued", width: "100px" },
+                { command: ["edit"], title: " ", width: "250px" }
+            ],
+            editable: "inline",
+            dataSource: dataSource,
+            save: function (e) {
+                alert("Saving");
+            }
+        });
+
+    });
+</script>

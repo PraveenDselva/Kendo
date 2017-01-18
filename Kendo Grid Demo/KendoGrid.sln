@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KendoGrid", "KendoGrid\KendoGrid.csproj", "{F135DD01-B589-407B-9C0E-FAED94206E0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KendoGrid.Tests", "KendoGrid.Tests\KendoGrid.Tests.csproj", "{8BBE6E62-F23E-4A26-A739-65EAB3192F39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F135DD01-B589-407B-9C0E-FAED94206E0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F135DD01-B589-407B-9C0E-FAED94206E0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F135DD01-B589-407B-9C0E-FAED94206E0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F135DD01-B589-407B-9C0E-FAED94206E0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BBE6E62-F23E-4A26-A739-65EAB3192F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BBE6E62-F23E-4A26-A739-65EAB3192F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BBE6E62-F23E-4A26-A739-65EAB3192F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BBE6E62-F23E-4A26-A739-65EAB3192F39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
